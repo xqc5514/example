@@ -10,9 +10,9 @@ export default function StartupCard({ startup, onClick }: StartupCardProps) {
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-200 overflow-hidden group"
+      className="bg-white border border-slate-200 rounded-xl overflow-hidden cursor-pointer group hover:border-slate-300 hover:shadow-md transition-all duration-300"
     >
-      <div className="h-48 bg-gradient-to-br from-blue-500 to-cyan-500 relative overflow-hidden">
+      <div className="h-40 bg-slate-100 relative overflow-hidden flex items-center justify-center">
         {startup.logo_url ? (
           <img
             src={startup.logo_url}
@@ -20,66 +20,48 @@ export default function StartupCard({ startup, onClick }: StartupCardProps) {
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="flex items-center justify-center h-full">
-            <TrendingUp className="w-20 h-20 text-white/80" />
+          <div className="bg-slate-200 w-full h-full flex items-center justify-center">
+            <TrendingUp className="w-16 h-16 text-slate-400" />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-2xl font-bold text-white mb-1 truncate">
-            {startup.name}
-          </h3>
-          {startup.sector && (
-            <span className="inline-block px-3 py-1 bg-white/90 text-blue-600 text-xs font-semibold rounded-full">
-              {startup.sector.name}
-            </span>
-          )}
-        </div>
       </div>
 
       <div className="p-6">
+        <h3 className="text-xl font-semibold text-slate-950 mb-2 truncate">
+          {startup.name}
+        </h3>
+
+        {startup.sector && (
+          <span className="inline-block px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded mb-3">
+            {startup.sector.name}
+          </span>
+        )}
+
         <p className="text-slate-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">
           {startup.description || 'No description available'}
         </p>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-100">
-            <div className="flex items-center gap-2 mb-1">
-              <PieChart className="w-4 h-4 text-emerald-600" />
-              <span className="text-xs font-medium text-emerald-700">Profit Margin</span>
-            </div>
-            <p className="text-xl font-bold text-emerald-900">{startup.profit_margin}%</p>
+        <div className="space-y-3 mb-4">
+          <div className="flex justify-between items-center py-2 border-t border-slate-100">
+            <span className="text-xs text-slate-500 font-medium">Profit Margin</span>
+            <span className="text-sm font-semibold text-slate-950">{startup.profit_margin}%</span>
           </div>
-
-          <div className="bg-blue-50 rounded-xl p-3 border border-blue-100">
-            <div className="flex items-center gap-2 mb-1">
-              <DollarSign className="w-4 h-4 text-blue-600" />
-              <span className="text-xs font-medium text-blue-700">Seeking</span>
-            </div>
-            <p className="text-xl font-bold text-blue-900">
-              ${(startup.funding_needed / 1000000).toFixed(1)}M
-            </p>
+          <div className="flex justify-between items-center py-2 border-t border-slate-100">
+            <span className="text-xs text-slate-500 font-medium">Seeking</span>
+            <span className="text-sm font-semibold text-slate-950">${(startup.funding_needed / 1000000).toFixed(1)}M</span>
           </div>
-
-          <div className="bg-amber-50 rounded-xl p-3 border border-amber-100">
-            <div className="flex items-center gap-2 mb-1">
-              <TrendingUp className="w-4 h-4 text-amber-600" />
-              <span className="text-xs font-medium text-amber-700">Equity</span>
-            </div>
-            <p className="text-xl font-bold text-amber-900">{startup.equity_offered}%</p>
+          <div className="flex justify-between items-center py-2 border-t border-slate-100">
+            <span className="text-xs text-slate-500 font-medium">Equity</span>
+            <span className="text-sm font-semibold text-slate-950">{startup.equity_offered}%</span>
           </div>
-
-          <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
-            <div className="flex items-center gap-2 mb-1">
-              <Calendar className="w-4 h-4 text-slate-600" />
-              <span className="text-xs font-medium text-slate-700">Founded</span>
-            </div>
-            <p className="text-xl font-bold text-slate-900">{startup.founded_year}</p>
+          <div className="flex justify-between items-center py-2 border-t border-slate-100">
+            <span className="text-xs text-slate-500 font-medium">Founded</span>
+            <span className="text-sm font-semibold text-slate-950">{startup.founded_year}</span>
           </div>
         </div>
 
-        <button className="w-full mt-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all shadow-md group-hover:shadow-lg">
-          View Details
+        <button className="w-full bg-slate-950 text-white py-2.5 rounded-lg font-medium text-sm hover:bg-slate-800 transition-colors">
+          View Opportunity
         </button>
       </div>
     </div>
